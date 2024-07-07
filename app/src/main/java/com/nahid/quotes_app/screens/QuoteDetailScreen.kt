@@ -1,5 +1,6 @@
 package com.nahid.quotes_app.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,11 +27,15 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.nahid.quotes_app.DataManager
 import com.nahid.quotes_app.R
 import com.nahid.quotes_app.models.Quotes
 
 @Composable
 fun QuotesDetails(quote: Quotes) {
+    BackHandler {
+        DataManager.switchPages(null)
+    }
     Box(
         contentAlignment = Alignment.Center, modifier = Modifier
             .fillMaxSize(1f)
@@ -65,13 +70,13 @@ fun QuotesDetails(quote: Quotes) {
                     contentDescription = "Quote"
                 )
                 Text(
-                    text = quote.text,
+                    text = quote.text?:"XYZ",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                 )
                 Divider()
                 Text(
-                    text = quote.author,
+                    text = quote.author?:"XYZ",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier

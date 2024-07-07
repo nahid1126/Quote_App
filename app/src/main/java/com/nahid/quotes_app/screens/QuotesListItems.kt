@@ -24,16 +24,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nahid.quotes_app.R
 import com.nahid.quotes_app.models.Quotes
 
 @Composable
-fun QuotesListItems(quotes: Quotes?, onClick: () -> Unit) {
+fun QuotesListItems(quotes: Quotes, onClick: (quotes: Quotes) -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(8.dp), modifier = Modifier
-            .clickable { onClick() }
+            .clickable { onClick(quotes) }
             .padding(8.dp)
     ) {
         Row(
@@ -56,14 +55,14 @@ fun QuotesListItems(quotes: Quotes?, onClick: () -> Unit) {
             Spacer(modifier = Modifier.padding(4.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = quotes?.text?:"XYZ",
+                    text = quotes.text?:"XYZ",
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 2.dp)
                 )
                 Divider()
                 Text(
-                    text = quotes?.author?:"XYZ",
+                    text = quotes.author?:"XYZ",
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier

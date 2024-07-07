@@ -9,6 +9,8 @@ object DataManager {
     var data = emptyArray<Quotes>()
     var currentPage = mutableStateOf(Pages.LISTING)
     var isDataLoaded = mutableStateOf(false)
+
+    var currentQuote: Quotes? = null
     fun loadDataFromFile(context: Context) {
         val inputStream = context.assets.open("quotes.json")
         val size: Int = inputStream.available()
@@ -22,8 +24,9 @@ object DataManager {
         isDataLoaded.value = true
     }
 
-    fun switchPages() {
+    fun switchPages(quotes: Quotes?) {
         if (currentPage.value == Pages.LISTING) {
+            currentQuote = quotes
             currentPage.value = Pages.DETAILS
         } else {
             currentPage.value = Pages.LISTING
