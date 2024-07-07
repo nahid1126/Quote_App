@@ -1,5 +1,6 @@
 package com.nahid.quotes_app.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
@@ -31,9 +33,12 @@ import com.nahid.quotes_app.models.Quotes
 @Composable
 fun QuotesListItems(quotes: Quotes, onClick: (quotes: Quotes) -> Unit) {
     Card(
-        elevation = CardDefaults.cardElevation(8.dp), modifier = Modifier
+        elevation = CardDefaults.cardElevation(8.dp),
+        colors = CardDefaults.cardColors(Color.LightGray),
+        modifier = Modifier
             .clickable { onClick(quotes) }
             .padding(8.dp)
+            .border(1.dp, Color.Cyan, RoundedCornerShape(8.dp))
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(4.dp)
@@ -56,6 +61,7 @@ fun QuotesListItems(quotes: Quotes, onClick: (quotes: Quotes) -> Unit) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = quotes.text?:"XYZ",
+                    color = Color.Black,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(vertical = 2.dp)
@@ -63,6 +69,7 @@ fun QuotesListItems(quotes: Quotes, onClick: (quotes: Quotes) -> Unit) {
                 Divider()
                 Text(
                     text = quotes.author?:"XYZ",
+                    color = Color.DarkGray,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier

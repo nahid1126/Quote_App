@@ -40,15 +40,17 @@ fun QuotesDetails(quote: Quotes) {
         contentAlignment = Alignment.Center, modifier = Modifier
             .fillMaxSize(1f)
             .background(
-                Brush.sweepGradient(
+                Brush.horizontalGradient(
                     colors = listOf(
-                        Color(0xFFffffff), Color(0xFFE3E3E3)
+                        MaterialTheme.colorScheme.background, Color(0xFFE3E3E3)
                     )
                 )
             )
     ) {
         Card(
-            elevation = CardDefaults.cardElevation(8.dp), modifier = Modifier.padding(32.dp)
+            elevation = CardDefaults.cardElevation(8.dp),
+            colors = CardDefaults.cardColors(Color.LightGray),
+            modifier = Modifier.padding(32.dp)
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
@@ -70,13 +72,13 @@ fun QuotesDetails(quote: Quotes) {
                     contentDescription = "Quote"
                 )
                 Text(
-                    text = quote.text?:"XYZ",
+                    text = quote.text?:"XYZ", color = Color.Black,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                 )
                 Divider()
                 Text(
-                    text = quote.author?:"XYZ",
+                    text = quote.author?:"XYZ", color = Color.DarkGray,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier
